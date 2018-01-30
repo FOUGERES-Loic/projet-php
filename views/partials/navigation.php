@@ -24,6 +24,13 @@ include __DIR__ . '/header.php';
                 <li class='<?php active('index.php?type=fruit');?>'><a href='../index.php?type=fruit'>Fruits</a></li>
                 <li class='<?php active('index.php?type=legume');?>'><a href='../index.php?type=legume'>Légumes</a></li>
             </ul>
+            <form class='navbar-form navbar-right' method='POST'>
+                <div class='form-group'>
+                    <input type='text' name='recherche' class='form-control' placeholder='Rechercher'
+                           value="<?= isset($search) ? $search : '' ?>">
+                </div>
+                <button type='submit' class='btn btn-default'>Envoyer</button>
+            </form><br>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

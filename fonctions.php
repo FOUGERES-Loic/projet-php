@@ -66,3 +66,18 @@ function getArticles($liste, $type){
     }
     return $retour;
 }
+
+/**
+ * @param array
+ * @param string
+ * @return array
+ */
+function getArticleByName($liste, $nom){
+    $retour = [];
+    foreach ($liste as $article){
+        if (stripos($article['nom'],$nom)!== false){
+            $retour[] = $article;
+        }
+    }
+    return $retour;
+}
