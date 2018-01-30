@@ -59,8 +59,11 @@ function getArticles($liste, $type){
         return $liste;
     }
     $retour = [];
+    /**
+     * @var Entity\Product $article
+     */
     foreach ($liste as $article){
-        if ($article['type'] == $type){
+        if ($article->getType()->getName() == $type){
             $retour[] = $article;
         }
     }
@@ -74,8 +77,11 @@ function getArticles($liste, $type){
  */
 function getArticleByName($liste, $nom){
     $retour = [];
+    /**
+     * @var Entity\Product $article
+     */
     foreach ($liste as $article){
-        if (stripos($article['nom'],$nom)!== false){
+        if (stripos($article->getNom(),$nom)!== false){
             $retour[] = $article;
         }
     }

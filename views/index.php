@@ -27,14 +27,16 @@ include __DIR__ . '/partials/navigation.php';
             </thead>
             <tbody>
             <?php
-            // <?php echo est equivalent à <?=
+            /**
+             * @var Entity\Product $article
+             */
             foreach ($articles as $article): ?>
                 <tr>
-                    <td><?= $article['nom']; ?></td>
-                    <td><?= $article['prix']; ?></td>
-                    <td><?= $article['type']; ?></td>
-                    <td><?= getSaison($article['mois_semis']); ?></td>
-                    <td><?= getStock($article['stock']); ?></td>
+                    <td><?= $article->getNom(); ?></td>
+                    <td><?= $article->getPrix(); ?></td>
+                    <td><?= $article->getType()->getName(); ?></td>
+                    <td><?= getSaison($article->getMoisSemis()); ?></td>
+                    <td><?= getStock($article->getStock()); ?></td>
                 </tr>
                 <?php
             endforeach;
