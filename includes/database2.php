@@ -1,12 +1,12 @@
 <?php
-include 'includes.php';
 
 use Entity\Type;
 use Entity\Product;
+use Entity\User;
 
-$fruit = new Type('fruit');
+$fruit = new Type('Fruit');
 $fruit->setId(1);
-$legume = new Type('legume');
+$legume = new Type('Légume');
 $legume->setId(2);
 
 $article1 = new Product();
@@ -27,3 +27,10 @@ $articles = [
 ];
 
 $listeTypes = [$fruit, $legume];
+
+$user1 = new User();
+$user1->setId(1)->setLogin('test')->setPassword('1234');
+
+$users = [
+    $user1
+];

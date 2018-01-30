@@ -4,10 +4,11 @@
  */
 function active($currect_page){
 //    $url_array =  explode('/', $_SERVER['SCRIPT_NAME']) ;
-    $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
+//    var_dump(urldecode($_SERVER['REQUEST_URI']));die;
+    $url_array =  explode('/', urldecode($_SERVER['REQUEST_URI'])) ;
     $url = end($url_array);
     if($currect_page == $url){
-        echo 'active'; //class name in css
+        return 'active'; //class name in css
     }
 }
 
@@ -63,7 +64,7 @@ function getArticles($liste, $type){
      * @var Entity\Product $article
      */
     foreach ($liste as $article){
-        if ($article->getType()->getName() == $type){
+        if ($article->getType()->getId() == $type){
             $retour[] = $article;
         }
     }
@@ -86,4 +87,15 @@ function getArticleByName($liste, $nom){
         }
     }
     return $retour;
+}
+
+function validateUser($listeUsers, Entity\User $user){
+    /** @var Entity\User $test */
+    foreach ($listeUsers as $test) {
+        if ($test->getLogin() == $user->getLogin()
+            && $test->getPassword() == $user->getPassword()) {
+            return true;
+        }
+    }
+    return false;
 }
