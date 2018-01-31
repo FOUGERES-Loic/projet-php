@@ -1,7 +1,10 @@
 <?php include __DIR__ . '/partials/header.php'; ?>
 <div class='container'>
 <div class='row'>
-    <div class='col-md-12 bordure'>
+    <div class='col-md-3 bordure'>
+
+    </div>
+    <div class='col-md-6 bordure'>
         <form method='POST'>
             <div class='form-group'>
                 <label for='inputLogin'>Login</label>

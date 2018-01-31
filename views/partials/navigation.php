@@ -1,5 +1,7 @@
 <?php
 include __DIR__ . '/header.php';
+use \Service\MenuService;
+$menuService = new MenuService();
 ?>
 <nav class='navbar navbar-default'>
     <div class='container-fluid'>
@@ -17,16 +19,16 @@ include __DIR__ . '/header.php';
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
             <ul class='nav navbar-nav'>
-                <li class='<?= active('index.php');?>'><a href='../index.php'>Index</a></li>
-                <li class='<?= active('create.php');?>'><a href='../create.php'>Create</a></li>
-                <li class='<?= active('update.php');?>'><a href='../update.php'>Update</a></li>
-                <li class='<?= active('delete.php');?>'><a href='../delete.php'>Delete</a></li>
+                <li class='<?= $menuService->isActive('index.php');?>'><a href='../index.php'>Index</a></li>
+                <li class='<?= $menuService->isActive('create.php');?>'><a href='../create.php'>Create</a></li>
+                <li class='<?= $menuService->isActive('update.php');?>'><a href='../update.php'>Update</a></li>
+                <li class='<?= $menuService->isActive('delete.php');?>'><a href='../delete.php'>Delete</a></li>
                 <?php
                 /**
                 * @var Entity\Type $type
                 */
                 foreach ($listeTypes as $type): ?>
-                    <li class='<?= active('index.php?type='.$type->getId().'&'.$type->getName());?>'>
+                    <li class='<?= $menuService->isActive('index.php?type='.$type->getId().'&'.$type->getName());?>'>
                         <a href=<?= '../index.php?type='.$type->getId() ?>&<?= $type->getName() ?>><?= $type->getName().'s' ?></a>
                     </li>
                 <?php endforeach; ?>

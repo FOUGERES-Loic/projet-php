@@ -1,15 +1,17 @@
 <?php
 include __DIR__ . '/includes/includes.php';
-include __DIR__ . '/fonctions.php';
+
+use \Service\UserService;
+
 
 use Entity\User;
+
+$userService = new UserService();
 
 if (!empty($_POST['login']) && !empty($_POST['password'])) {
     $user = new User();
     $user->setLogin($_POST['login'])->setPassword($_POST['password']);
-    if (validateUser($users, $user)) {
-        session_start();
-        var_dump(session_id());die;
+    if ($userService->validateUser($users, $user)) {
         header('Location: http://www.php.local/index.php');
         exit();
     }

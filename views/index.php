@@ -35,8 +35,8 @@ include __DIR__ . '/partials/navigation.php';
                     <td><?= $article->getNom(); ?></td>
                     <td><?= $article->getPrix(); ?></td>
                     <td><?= $article->getType()->getName(); ?></td>
-                    <td><?= getSaison($article->getMoisSemis()); ?></td>
-                    <td><?= getStock($article->getStock()); ?></td>
+                    <td><?= $productService->getSaison($article); ?></td>
+                    <td><?= $productService->getStock($article); ?></td>
                 </tr>
                 <?php
             endforeach;
