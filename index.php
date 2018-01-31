@@ -7,7 +7,7 @@ use \Service\UserService;
 //    var_dump($_SERVER);die;
 
 $productService = new ProductService();
-$userService = new UserService();
+$userService = new UserService($users);
 
 $type = empty($_GET['type']) ? null : $_GET['type'];
 $articles = $productService->getArticles($articles, $type);

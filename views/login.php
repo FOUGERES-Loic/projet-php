@@ -1,5 +1,12 @@
 <?php include __DIR__ . '/partials/header.php'; ?>
 <div class='container'>
+    <div class='row'>
+        <div class='col-md-3 bordure'>
+        </div>
+        <div class='col-md-6 bordure'>
+            <h1><?php if($error != null) echo $error ?></h1>
+        </div>
+    </div>
 <div class='row'>
     <div class='col-md-3 bordure'>
 

@@ -1,8 +1,7 @@
 <?php
 include __DIR__ . '/includes/includes.php';
-include __DIR__ . '/fonctions.php';
 
-$userService = new \Service\UserService();
+$userService = new \Service\UserService($users);
 if (!$userService->isConnected()) {
     header('Location: http://www.php.local/login.php');
     exit();
