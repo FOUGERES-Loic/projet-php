@@ -3,9 +3,29 @@
 namespace Service;
 
 use \Entity\Product;
+use \Repository\RepositoryFactory;
 
 class ProductService
 {
+    private $productRepo;
+
+    /**
+     * ProductService constructor.
+     * @param $productRepo
+     */
+    public function __construct()
+    {
+        $this->productRepo = RepositoryFactory::buildRepository('product');
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function getAllProducts()
+    {
+        return $this->productRepo->getAll();
+    }
     /**
      * @param Product $product
      * @return string|null
@@ -34,13 +54,13 @@ class ProductService
      */
     public function getStock($product){
         if($product->getStock() > 5){
-            return 'Produit en stock';
+            return '<span class="label label-success">Produit en stock</span>';
         }
         elseif($product->getStock() > 0 && $product->getStock() < 5) {
-            return 'Bientôt plus de stock';
+            return '<span class="label label-warning">Bientôt plus de stock</span>';
         }
         else{
-            return 'En attente de livraison';
+            return '<span class="label label-danger">En attente de livraison</span>';
         }
     }
 
@@ -81,5 +101,30 @@ class ProductService
             }
         }
         return $retour;
+    }
+
+    public function getArticleById(int $id)
+    {
+        return $this->productRepo->getOne($id);
+    }
+
+    public function create(Product $product)
+    {
+        return $this->productRepo->create($product);
+    }
+
+    public function update(Product $product)
+    {
+        return $this->productRepo->update($product);
+    }
+
+    public function delete(Product $product)
+    {
+        return $this->productRepo->delete($product);
+    }
+
+    public function getAllIdProducts()
+    {
+        return $this->productRepo->getAllIdProducts();
     }
 }

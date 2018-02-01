@@ -6,6 +6,7 @@ use \Entity\User;
 
 class UserRepository implements RepositoryInterface
 {
+    /** @var \mysqli */
     private $source;
 
     /**
@@ -24,37 +25,37 @@ class UserRepository implements RepositoryInterface
 
     public function create($object)
     {
-        // TODO: Implement create() method.
+
     }
 
     public function getAll()
     {
-        $query = 'SELECT * FROM product';
+        $query = 'SELECT * FROM user';
         $users = [];
         if ($result = $this->source->query($query)) {
             /* fetch associative array */
             while ($row = $result->fetch_assoc()) {
                 $user = new User();
-                $user->setId($row['id'])->setLogin($row['login'])->setPassword($row['password']);
+                $user->setId($row["id"])->setLogin($row["login"])->setPassword($row["password"]);
                 $users[] = $user;
             }
-            $this->source->free();
+            //$this->source->free();
         }
         return $users;
     }
 
     public function getOne($search)
     {
-        // TODO: Implement getOne() method.
+
     }
 
     public function update($object)
     {
-        // TODO: Implement update() method.
+
     }
 
     public function delete($object)
     {
-        // TODO: Implement delete() method.
+
     }
 }

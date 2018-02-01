@@ -6,6 +6,7 @@ use \Entity\Type;
 
 class TypeRepository implements RepositoryInterface
 {
+    /** @var \mysqli */
     private $source;
 
     /**
@@ -24,12 +25,12 @@ class TypeRepository implements RepositoryInterface
 
     public function create($object)
     {
-        // TODO: Implement create() method.
+
     }
 
     public function getAll()
     {
-        $query = 'SELECT * FROM product';
+        $query = 'SELECT * FROM type';
         $types = [];
         if ($result = $this->source->query($query)) {
             /* fetch associative array */
@@ -38,23 +39,35 @@ class TypeRepository implements RepositoryInterface
                 $type->setId($row['id'])->setName($row['name']);
                 $types[] = $type;
             }
-            $this->source->free();
+//            $this->source->free();
         }
         return $types;
     }
 
     public function getOne($search)
     {
+        if ($stmt = $this->source->prepare('SELECT * FROM type WHERE id = ?')) {
+            $stmt->bind_param('i', $search);
+            $stmt->execute();
 
+            $result = $stmt->get_result();
+            /* fetch associative array */
+            while ($row = $result->fetch_assoc()) {
+                $type = new Type();
+                $type->setId($row['id'])->setName($row['name']);
+            }
+//            $this->source->free();
+        }
+        return $type;
     }
 
     public function update($object)
     {
-        // TODO: Implement update() method.
+
     }
 
     public function delete($object)
     {
-        // TODO: Implement delete() method.
+
     }
 }

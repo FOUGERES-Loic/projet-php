@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . '/includes/includes.php';
 
-$userService = new \Service\UserService($users);
+$userService = new \Service\UserService();
 if (!$userService->isConnected()) {
     header('Location: http://www.php.local/login.php');
     exit();

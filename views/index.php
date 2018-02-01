@@ -23,6 +23,7 @@ include __DIR__ . '/partials/navigation.php';
                     <th>Type</th>
                     <th>Mois de semi</th>
                     <th>Stock</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,12 +32,22 @@ include __DIR__ . '/partials/navigation.php';
              * @var Entity\Product $article
              */
             foreach ($articles as $article): ?>
-                <tr>
+            <?php if (isset($_GET['lastModify'])) {
+                    if ($_GET['lastModify'] == $article->getId()) {
+                        echo '<tr class="info">';
+                    } else {
+                        echo '<tr>';
+                    }
+            }?>
                     <td><?= $article->getNom(); ?></td>
                     <td><?= $article->getPrix(); ?></td>
                     <td><?= $article->getType()->getName(); ?></td>
                     <td><?= $productService->getSaison($article); ?></td>
                     <td><?= $productService->getStock($article); ?></td>
+                    <td>
+                        <a href="update.php?id=<?= $article->getId(); ?>">Modifier</a>
+                        <a href="delete.php?id=<?= $article->getId(); ?>">Supprimer</a>
+                    </td>
                 </tr>
                 <?php
             endforeach;

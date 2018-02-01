@@ -11,6 +11,8 @@ class RepositoryFactory
         switch ($source) {
             case 'mysql':
                 $origin = new \mysqli('localhost','root','','epicerie');
+                $origin->set_charset("UTF8");
+                break;
             default:
                 throw new \Exception('Type de source inconnu');
         }

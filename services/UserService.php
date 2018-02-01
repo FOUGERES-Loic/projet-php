@@ -3,6 +3,7 @@
 namespace Service;
 
 use \Entity\User;
+use \Repository\RepositoryFactory;
 
 class UserService
 {
@@ -10,9 +11,11 @@ class UserService
     /**
      * UserService constructor.
      */
-    public function __construct($listeUsers)
+    public function __construct()
     {
-        $this->listeUsers = $listeUsers;
+        $userRepo = RepositoryFactory::buildRepository('user');
+
+        $this->listeUsers = $userRepo->getAll();
     }
 
     public function validateUser($listeUsers, User $user){

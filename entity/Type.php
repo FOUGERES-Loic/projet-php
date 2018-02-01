@@ -17,9 +17,9 @@ class Type
      * Type constructor.
      * @param string $name
      */
-    public function __construct(string $name)
+    public function __construct()
     {
-        $this->name = $name;
+//        $this->name = $name;
     }
 
     /**

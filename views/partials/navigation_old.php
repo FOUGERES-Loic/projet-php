@@ -20,11 +20,13 @@ $menuService = new MenuService();
         <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
             <ul class='nav navbar-nav'>
                 <li class='<?= $menuService->isActive('index.php');?>'><a href='../index.php'>Index</a></li>
-                <li class='<?= $menuService->isActive('create.php');?>'><a href='../create.php'>Ajouter</a></li>
+                <li class='<?= $menuService->isActive('create.php');?>'><a href='../create.php'>Create</a></li>
+                <li class='<?= $menuService->isActive('update.php');?>'><a href='../update.php'>Update</a></li>
+                <li class='<?= $menuService->isActive('delete.php');?>'><a href='../delete.php'>Delete</a></li>
                 <?php
                 /**
-                * @var Entity\Type $type
-                */
+                 * @var Entity\Type $type
+                 */
                 foreach ($listeTypes as $type): ?>
                     <li class='<?= $menuService->isActive('index.php?type='.$type->getId().'&'.$type->getName());?>'>
                         <a href=<?= '../index.php?type='.$type->getId() ?>&<?= $type->getName() ?>><?= $type->getName().'s' ?></a>
