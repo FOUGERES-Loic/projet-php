@@ -22,7 +22,7 @@
                     <label for='inputMoisSemis'>Mois de semis</label>
                     <select class="form-control" name='mois' id='inputMoisSemis'>
                         <?php foreach ($listeMois as $moisNum => $moisNom): ?>
-                            <option  <?= !empty($product)&&$product->getMois()==$moisNum?'selected':''; ?>
+                            <option  <?= !empty($product)&&$product->getMoisSemis()==$moisNum?'selected':''; ?>
                                     value="<?= $moisNum ?>"><?= $moisNom ?></option>
                         <?php endforeach; ?>
                     </select>

@@ -101,12 +101,12 @@ class ProductRepository implements RepositoryInterface
         $image = $object->getImage();
         $id = $object->getId();
         $stmt = $this->source->prepare('UPDATE product SET nom = ?, prix = ?, moisSemis = ?, stock = ?, 
-            typeSemi = ?, image = ? WHERE id = ?)');
+            typeSemi = ?, image = ? WHERE id = ?');
         $stmt->bind_param('sdiiisi', $nom, $prix, $mois, $stock, $type, $image, $id);
         $stmt->execute();
 
         $stmt->close();
-        return true;
+        return $object;
     }
 
     /** @param \Entity\Product */
