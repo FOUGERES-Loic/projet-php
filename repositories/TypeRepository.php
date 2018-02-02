@@ -4,23 +4,16 @@ namespace Repository;
 
 use \Entity\Type;
 
-class TypeRepository implements RepositoryInterface
+class TypeRepository implements RepositoryInterface, DbTraitAwareInterface
 {
-    /** @var \mysqli */
-    private $source;
+    use DbTrait;
 
     /**
      * UserRepository constructor.
      * @param $source
      */
-    public function __construct($source)
+    public function __construct()
     {
-        /* check connection */
-        if ($source->connect_errno){
-            printf('Connect failed: %s\n', $source->connect_error);
-            exit();
-        }
-        $this->source = $source;
     }
 
     public function create($object)

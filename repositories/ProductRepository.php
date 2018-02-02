@@ -2,14 +2,11 @@
 
 namespace Repository;
 
-//include 'RepositoryFactory.php';
-
 use \Entity\Product;
 
-class ProductRepository implements RepositoryInterface
+class ProductRepository implements RepositoryInterface, DbTraitAwareInterface
 {
-    /** @var \mysqli */
-    private $source;
+    use DbTrait;
     /** @var \Repository\TypeRepository */
     private $typeRepo;
 
@@ -17,16 +14,9 @@ class ProductRepository implements RepositoryInterface
      * UserRepository constructor.
      * @param $source
      */
-    public function __construct($source)
+    public function __construct($typeRepo)
     {
-        /* check connection */
-        if ($source->connect_errno){
-            printf("Connect failed: %s\n", $source->connect_error);
-            exit();
-        }
-        $this->source = $source;
-        $this->typeRepo = RepositoryFactory::buildRepository('type');
-
+        $this->typeRepo = $typeRepo;
     }
 
     /** @param \Entity\Product */

@@ -13,7 +13,7 @@ class UserService
      */
     public function __construct()
     {
-        $userRepo = RepositoryFactory::buildRepository('user');
+        $userRepo = RepositoryFactory::buildRepository(RepositoryFactory::USER);
 
         $this->listeUsers = $userRepo->getAll();
     }

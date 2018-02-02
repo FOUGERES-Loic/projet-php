@@ -12,12 +12,13 @@ include __DIR__ . '/partials/navigation.php';
     </div>
 </div>
 <div class='row'>
-    <div class='col-md-2 bordure'>
+    <div class='col-md-1 bordure'>
     </div>
-    <div class='col-md-8 bordure'>
+    <div class='col-md-10 bordure'>
         <table class='table table-striped'>
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Nom</th>
                     <th>Prix</th>
                     <th>Type</th>
@@ -39,6 +40,10 @@ include __DIR__ . '/partials/navigation.php';
                         echo '<tr>';
                     }
             }?>
+                    <td>
+                        <img src="<?= $config->getImagepath().$article->getImage(); ?>"
+                             alt="<?= $article->getImage(); ?>" class="img-rounded">
+                    </td>
                     <td><?= $article->getNom(); ?></td>
                     <td><?= $article->getPrix(); ?></td>
                     <td><?= $article->getType()->getName(); ?></td>

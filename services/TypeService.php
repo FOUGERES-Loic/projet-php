@@ -20,7 +20,7 @@ class TypeService
      */
     public function __construct()
     {
-        $this->typeRepo = RepositoryFactory::buildRepository('type');
+        $this->typeRepo = RepositoryFactory::buildRepository(RepositoryFactory::TYPE);
     }
 
     public function getAll()
