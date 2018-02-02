@@ -1,8 +1,3 @@
-<?php
-include __DIR__ . '/header.php';
-use \Service\MenuService;
-$menuService = new MenuService();
-?>
 <nav class='navbar navbar-default'>
     <div class='container-fluid'>
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -23,8 +18,8 @@ $menuService = new MenuService();
                 <li class='<?= $menuService->isActive('create.php');?>'><a href='../create.php'>Ajouter</a></li>
                 <?php
                 /**
-                * @var Entity\Type $type
-                */
+                 * @var Entity\Type $type
+                 */
                 foreach ($listeTypes as $type): ?>
                     <li class='<?= $menuService->isActive('index.php?type='.$type->getId().'&'.$type->getName());?>'>
                         <a href=<?= '../index.php?type='.$type->getId() ?>&<?= $type->getName() ?>><?= $type->getName().'s' ?></a>
@@ -46,4 +41,3 @@ $menuService = new MenuService();
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class='container'>

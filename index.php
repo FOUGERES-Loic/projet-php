@@ -1,25 +1,49 @@
 <?php
-include __DIR__ . '/includes/includes.php';
+define('ROOT_PATH', __DIR__);
 
-use \Service\ProductService;
-use \Service\UserService;
+include ROOT_PATH.'/entity/Product.php';
+include ROOT_PATH.'/entity/Type.php';
+include ROOT_PATH.'/entity/User.php';
 
-//    var_dump($_SERVER);die;
+include ROOT_PATH.'/repositories/DbTraitAwareInterface.php';
+include ROOT_PATH.'/repositories/DbTrait.php';
+include ROOT_PATH.'/repositories/RepositoryInterface.php';
+include ROOT_PATH.'/repositories/TypeRepository.php';
+include ROOT_PATH.'/repositories/UserRepository.php';
+include ROOT_PATH.'/repositories/ProductRepository.php';
+include ROOT_PATH.'/repositories/RepositoryFactory.php';
 
-$productService = new ProductService();
-$userService = new UserService();
+include ROOT_PATH.'/services/MenuService.php';
+include ROOT_PATH.'/services/ProductService.php';
+include ROOT_PATH.'/services/UserService.php';
+include ROOT_PATH.'/services/TypeService.php';
+include ROOT_PATH.'/services/Configuration.php';
+include ROOT_PATH.'/services/Router.php';
 
-$articles = $productService->getAllProducts();
+include ROOT_PATH.'/controllers/AbstractController.php';
+include ROOT_PATH.'/controllers/ConnectionController.php';
+include ROOT_PATH.'/controllers/ProductController.php';
 
-$type = empty($_GET['type']) ? null : $_GET['type'];
-$articles = $productService->getArticles($articles, $type);
-$search = null;
-if (!empty($_POST['recherche'])) {
-    $search = $_POST['recherche'];
-    $articles = $productService->getArticleByName($articles, $search);
-}
-if (!$userService->isConnected()) {
-    header('Location: http://www.php.local/login.php');
-    exit();
-}
-include __DIR__."/views/index.php";
+use \Service\Configuration;
+use \Service\TypeService;
+
+$typeService = new TypeService();
+$listeTypes = $typeService->getAll();
+$config = Configuration::getInstance();
+
+$listeMois = [
+    0 => 'Janvier',
+    1 => 'Fevrier',
+    2 => 'Mars',
+    3 => 'Avril',
+    4 => 'Mai',
+    5 => 'Juin',
+    6 => 'Juillet',
+    7 => 'Août',
+    8 => 'Septembre',
+    9 => 'Octobre',
+    10 => 'Novembre',
+    11 => 'Décembre'
+];
+
+session_start();
