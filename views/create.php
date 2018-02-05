@@ -10,6 +10,7 @@
         <div class='col-md-8 bordure'>
             <form class='form-horizontal' method='POST' enctype='multipart/form-data'>
                 <input type='hidden' class='.sr-only' name='id' value='<?= !empty($product)? $product->getId():""; ?>'>
+                <input type='hidden' class='.sr-only' name='imageSave' value='<?= !empty($product)? $product->getImage():""; ?>'>
                 <div class='form-group'>
                     <label class='col-sm-2' for='inputNom'>Nom du produit</label>
                     <div class='col-sm-8'>

@@ -7,7 +7,7 @@ if (!empty($_POST)) {
     $product = new \Entity\Product();
     $product->setNom($_POST['nom'])->setStock($_POST['stock'])
         ->setPrix($_POST['prix'])->setMoisSemis($_POST['mois'])
-        ->setType($typeRepo->getOne($_POST['type']));
+        ->setType($typeRepo->getOne($_POST['type']))->setImage($_POST['imageSave']);
 
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0)
     {
