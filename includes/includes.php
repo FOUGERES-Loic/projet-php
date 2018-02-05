@@ -29,6 +29,7 @@ use \Service\TypeService;
 $typeService = new TypeService();
 $listeTypes = $typeService->getAll();
 $config = Configuration::getInstance();
+$errors = [];
 
 $listeMois = [
     0 => 'Janvier',

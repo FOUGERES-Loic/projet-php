@@ -41,6 +41,9 @@ class Product
      */
     public function setNom($nom)
     {
+        if (empty($nom)) {
+            $errors['nom'] = 'Le nom ne peut pas être laissé à vide.';
+        }
         $this->nom = $nom;
         return $this;
     }
@@ -59,6 +62,9 @@ class Product
      */
     public function setPrix($prix)
     {
+        if ($prix < 0) {
+            $errors['prix'] = 'Le prix ne peut pas être négatif.';
+        }
         $this->prix = $prix;
         return $this;
     }
@@ -77,6 +83,9 @@ class Product
      */
     public function setMoisSemis($mois_semis)
     {
+        if (0 > $mois_semis || $mois_semis > 11) {
+            $errors['mois'] = 'Merci de choisir un mois dans la liste.';
+        }
         $this->mois_semis = $mois_semis;
         return $this;
     }
@@ -97,7 +106,8 @@ class Product
     {
         $stock = (int)$stock;
         if ($stock < 0) {
-            throw new \Exception('le stock ne peut pas être négatif!');
+//            throw new \Exception('le stock ne peut pas être négatif!');
+            $errors['stock'] = 'Le stock ne peut pas être négatif.';
         }
         $this->stock = $stock;
         return $this;
@@ -154,7 +164,8 @@ class Product
     public function setType(Type $type): Product
     {
         if (!$type instanceof Type) {
-            throw new \Exception('le type fournit n\'est pas valide.');
+//            throw new \Exception('le type fournit n\'est pas valide.');
+            $errors['type'] = 'Merci de choisir un type dans la liste.';
         }
         $this->type = $type;
         return $this;
