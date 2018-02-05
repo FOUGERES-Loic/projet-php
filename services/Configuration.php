@@ -31,43 +31,12 @@ class Configuration
     {
         $name = substr($name, 3);
         $name = strtolower($name);
-        switch ($name) {
-            case 'host':
-                return $this->config['database']['host'];
-            case 'dbname':
-                return $this->config['database']['dbname'];
-            case 'username':
-                return $this->config['database']['username'];
-            case 'passwd':
-                return $this->config['database']['passwd'];
-            case 'charset':
-                return $this->config['database']['charset'];
-            case 'source':
-                return $this->config['database']['source'];
-            case 'imagepath':
-                return $this->config['app']['imagepath'];
-            default:
-                throw new \Exception('Information inconnue dans config.ini');
+        if (isset($this->config['database'][$name])) {
+            return $this->config['database'][$name];
+        } else if ($this->config['app'][$name]) {
+            return $this->config['app'][$name];
+        } else {
+            return null;
         }
     }
 }
-
-//    public function __get($name)
-//    {
-//        switch ($name) {
-//            case 'host':
-//                return $this->config['host'];
-//            case 'dbname':
-//                return $this->config['dbname'];
-//            case 'username':
-//                return $this->config['username'];
-//            case 'passwd':
-//                return $this->config['passwd'];
-//            case 'charset':
-//                return $this->config['charset'];
-//            case 'source':
-//                return $this->config['source'];
-//            default:
-//                throw new \Exception('Information inconnue dans config.ini');
-//        }
-//    }

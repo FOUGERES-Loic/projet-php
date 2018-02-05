@@ -24,26 +24,18 @@ include ROOT_PATH.'/controllers/AbstractController.php';
 include ROOT_PATH.'/controllers/ConnectionController.php';
 include ROOT_PATH.'/controllers/ProductController.php';
 
-use \Service\Configuration;
-use \Service\TypeService;
-
-$typeService = new TypeService();
-$listeTypes = $typeService->getAll();
-$config = Configuration::getInstance();
-
-$listeMois = [
-    0 => 'Janvier',
-    1 => 'Fevrier',
-    2 => 'Mars',
-    3 => 'Avril',
-    4 => 'Mai',
-    5 => 'Juin',
-    6 => 'Juillet',
-    7 => 'Août',
-    8 => 'Septembre',
-    9 => 'Octobre',
-    10 => 'Novembre',
-    11 => 'Décembre'
-];
-
 session_start();
+
+$route = \Service\Router::getRoute($_SERVER['REQUEST_URI']);
+$controllerClassName = '\\Controller\\'.$route['controller'];
+if (class_exists($controllerClassName)) {
+    $controller = new $controllerClassName();
+    $method = $route['action'];
+    if (method_exists($controller, $method)) {
+        $controller->$method();
+        exit;
+    }
+} else {
+    header("HTTP/1.0 404 Not Found");
+    echo 'Page not found';
+}

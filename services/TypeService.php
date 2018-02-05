@@ -18,9 +18,9 @@ class TypeService
     /**
      * TypeService constructor.
      */
-    public function __construct()
+    public function __construct($typeRepo)
     {
-        $this->typeRepo = RepositoryFactory::buildRepository(RepositoryFactory::TYPE);
+        $this->typeRepo = $typeRepo;
     }
 
     public function getAll()

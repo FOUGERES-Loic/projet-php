@@ -13,9 +13,9 @@ class ProductService
      * ProductService constructor.
      * @param $productRepo
      */
-    public function __construct()
+    public function __construct($productRepo)
     {
-        $this->productRepo = RepositoryFactory::buildRepository(RepositoryFactory::PRODUCT);
+        $this->productRepo = $productRepo;
     }
 
     /**

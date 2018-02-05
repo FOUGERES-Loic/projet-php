@@ -14,14 +14,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
             <ul class='nav navbar-nav'>
-                <li class='<?= $menuService->isActive('index.php');?>'><a href='../index.php'>Index</a></li>
-                <li class='<?= $menuService->isActive('create.php');?>'><a href='../create.php'>Ajouter</a></li>
+                <li><a href='../index.php'>Index</a></li>
+                <li><a href='../product/create'>Ajouter</a></li>
                 <?php
                 /**
                  * @var Entity\Type $type
                  */
                 foreach ($listeTypes as $type): ?>
-                    <li class='<?= $menuService->isActive('index.php?type='.$type->getId().'&'.$type->getName());?>'>
+                    <li>
                         <a href=<?= '../index.php?type='.$type->getId() ?>&<?= $type->getName() ?>><?= $type->getName().'s' ?></a>
                     </li>
                 <?php endforeach; ?>
